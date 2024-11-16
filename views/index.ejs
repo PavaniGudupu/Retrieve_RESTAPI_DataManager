@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Manager</title>
+  <style>
+
+    * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    }
+
+    body {
+      overflow-y: auto;
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #000000;
+      color: #333;
+    }
+
+    .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem; /* Prevent cutting at the top */
+    min-height: 100vh;
+    }
+
+   
+    .form-group {
+    width: 90%;
+    max-width: 500px;
+    padding: 2rem;
+    margin: 1rem;
+      background-color: #bbdefd;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .form-group label {
+      font-size: 1.1rem;
+      font-weight: bold;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group p {
+      font-size: 1rem;
+      margin: 1rem 0;
+      color: #555;
+    }
+
+    .form-group input {
+      width: 90%;
+      padding: 0.7rem;
+      margin-top: 0.5rem;
+      font-size: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      outline: none;
+    }
+
+    .form-group input:focus {
+      border-color: #007BFF;
+    }
+
+    .form-group button {
+      width: 100%;
+      padding: 0.7rem;
+      font-size: 1rem;
+      margin-top: 1rem;
+      color: #fff;
+      background-color: #007BFF;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .form-group button:hover {
+      background-color: #0056b3;
+    }
+
+    .form-group .form-section {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group .form-section:last-child {
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+
+
+
+<body>
+  <div class="container">
+    <div class="form-group">
+      <!-- Display Content -->
+      <div class="form-section">
+        <label for="">Data</label>
+        <p><%= content %></p>
+      </div>
+<br>
+      <!-- Random Data -->
+      <div class="form-section">
+        <form action="/" method="post">
+          <button type="submit" name="random" formaction="/random">Random Data</button>
+        </form>
+      </div>
+
+      <!-- Get All Data -->
+      <div class="form-section">
+        <form action="/" method="post">
+          <button type="submit" name="random" formaction="/allbasicAuth">Get All Data</button>
+        </form>
+      </div>
+<br><br>
+      <!-- Filter by Score -->
+      <div class="form-section">
+        <form action="/" method="post">
+          <label for="score">Enter Score</label>
+          <input type="text" id="score" placeholder="Score" name="score">
+          <button type="submit" name="random" formaction="/filter">Get by Filter</button>
+        </form>
+      </div>
+
+      <br><br>
+      <!-- Get Secrets by ID -->
+      <div class="form-section">
+        <form action="/" method="post">
+          <label for="id">Enter ID</label>
+          <input type="text" id="id" placeholder="ID" name="id">
+          <button type="submit" name="secretsId" formaction="/SecretsID">Get Secrets with ID</button>
+        </form>
+      </div>
+
+      <!-- Get User Secrets -->
+      <div class="form-section">
+        <form action="/" method="post">
+          <button type="submit" name="userSecrets" formaction="/userSecrets">Get User Secrets</button>
+        </form>
+      </div>
+
+
+
+      <br><br>
+      <!-- Post Secrets -->
+      <div class="form-section">
+        <form action="/" method="post">
+            <label for="id">Enter Your Secret</label>
+            <input type="text" id="yourSecret" placeholder="Enter Secret" name="yourSecret">
+            <br><br>
+            <label for="id">Enter Your Score</label>
+            <input type="text" id="yourScore" placeholder="Enter Score" name="yourScore">
+            <br>
+            <button type="submit" name="secretsId" formaction="/postSecrets">Post your Secret</button>
+          </form>    
+      </div>
+   
+
+      <br><br>
+      <!-- PUT Secrets -->
+      <div class="form-section">
+        <form action="/" method="post">
+            <label for="id">Enter ID</label>
+            <input type="text" id="updateID" placeholder="ID" name="updateID">
+            <br><br>
+            <label for="id">Enter Your Secret</label>
+            <input type="text" id="yourSecret" placeholder="Enter Secret" name="yourSecret">
+            <br><br>
+            <label for="id">Enter Your Score</label>
+            <input type="text" id="yourScore" placeholder="Enter Score" name="yourScore">
+            <br>
+            <button type="submit" name="secretsId" formaction="/putSecret">Put your Secret</button>
+          </form>    
+      </div>
+   
+      <br><br>
+      <!-- PATCH Secrets -->
+      <div class="form-section">
+        <form action="/" method="post">
+            <label for="id">Enter ID</label>
+            <input type="text" id="patchID" placeholder="ID" name="patchID">
+            <br><br>
+            <label for="id">Enter Your Secret</label>
+            <input type="text" id="yourSecret" placeholder="Enter Secret" name="yourSecret">
+            <br><br>
+            <label for="id">Enter Your Score</label>
+            <input type="text" id="yourScore" placeholder="Enter Score" name="yourScore">
+            <br>
+            <button type="submit" name="secretsId" formaction="/patchSecret">Put your Secret</button>
+          </form>    
+      </div>
+   
+
+
+      <!-- DELETE Secrets by ID -->
+      <div class="form-section">
+        <form action="/" method="post">
+          <label for="id">Enter ID</label>
+          <input type="text" id="id" placeholder="ID" name="id">
+          <button type="submit" name="secretsId" formaction="/deleteID">DELETE with ID</button>
+        </form>
+      </div>
+
+
+
+    </div>
+  </div>
+</body>
+</html>
+
+   
+      
+
+
+
